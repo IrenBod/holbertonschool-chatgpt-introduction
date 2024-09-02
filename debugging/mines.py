@@ -62,8 +62,11 @@ class Minesweeper:
         while True:
             self.print_board()
             try:
-                x = int(input("Enter x coordinate: "))
-                y = int(input("Enter y coordinate: "))
+                x = int(input("Enter x coordinate (0-{}): ".format(self.width - 1)))
+                y = int(input("Enter y coordinate (0-{}): ".format(self.height - 1)))
+                if x < 0 or x >= self.width or y < 0 or y >= self.height:
+                    print("Coordinates out of bounds. Please try again.")
+                    continue
                 if not self.reveal(x, y):
                     self.print_board(reveal=True)
                     print("Game Over! You hit a mine.")
